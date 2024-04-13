@@ -8,9 +8,9 @@
 
 Pre-Print.
 
-**NOTE**: For subsequent updates of the paper, We will update the arixv version in next month.
+**NOTE 2024-04-12**: For subsequent updates of the paper, We will update the arixv version in next month.
 
-**NOTE**: 2024-04-13 We released the model of MambaMIL. The whole training code is coming soon.
+**NOTE 2024-04-13**: We released the model of MambaMIL. The whole training code is coming soon.
 
 ## Installation
 * Environment: CUDA 11.8 / Python 3.10
