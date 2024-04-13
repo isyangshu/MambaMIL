@@ -43,13 +43,13 @@ pip install tensorboardx
 
 ## Repository Details
 
-* `csv`:  Complete Cbioportal files, including the features path and data splits with 5-fold cross-validation. 
-* `datasets`: The code for Dataset, you can just replace the path in Line-25.
+<!-- * `csv`:  Complete Cbioportal files, including the features path and data splits with 5-fold cross-validation. 
+* `datasets`: The code for Dataset, you can just replace the path in Line-25. -->
 * `mamba_ssm`: including the original Mamba, Bi-Mamba from Vim and our proposed SRMamba.
 * `models`: the model code about SRMamba, similar to [MCAT](https://github.com/mahmoodlab/MCAT).
-* `results`: the results on 12 datasets, including BLCA BRCA CESC CRC GBMLGG KIRC LIHC LUAD LUSC PAAD SARC UCEC.
+<!-- * `results`: the results on 12 datasets, including BLCA BRCA CESC CRC GBMLGG KIRC LIHC LUAD LUSC PAAD SARC UCEC. -->
 
-## How to Train
+<!-- ## How to Train -->
 ### Prepare your data
 #### WSIs
 1. Download diagnostic WSIs from [TCGA](https://portal.gdc.cancer.gov/)
@@ -64,7 +64,7 @@ DATA_ROOT_DIR/
         └── ...
 ```
 
-### Training
+<!-- ### Training
 
 ```shell
 sh mambamil.sh
@@ -83,7 +83,7 @@ I show the csv files about results in the `results`.
 
 * Results & Pretrained Parameters:
     - [Google Drive](-)
-    - [BaiduYunPan(-)]()
+    - [BaiduYunPan(-)]() -->
 
 ## Paper Details
 
