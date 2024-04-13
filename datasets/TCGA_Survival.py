@@ -16,8 +16,8 @@ class TCGA_Survival(data.Dataset):
     def get_split(self, fold=0):
         assert 0 <= fold <= 4, 'fold should be in 0 ~ 4'
         split = self.rows['Fold {}'.format(fold)].values.tolist()
-        train_split = [i for i, x in enumerate(split) if x == 'train: complete']
-        val_split = [i for i, x in enumerate(split) if x == 'val: complete']
+        train_split = [i for i, x in enumerate(split) if x == 'train']
+        val_split = [i for i, x in enumerate(split) if x == 'val']
         print("[dataset] (fold {}) training split (exclude missing data): {}, validation split: {}".format(fold, len(train_split), len(val_split)))
         return train_split, val_split
 
