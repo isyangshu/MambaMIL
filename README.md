@@ -8,10 +8,12 @@
 
 Pre-Print.
 
-**NONE**: For subsequent updates of the paper, I will update the arixv version in next month.
+**NOTE**: For subsequent updates of the paper, We will update the arixv version in next month.
+
+**NOTE**: The code for survival analysis is released and the code for cancer subtyping is coming soon.
 
 ## Installation
-* Enviroment: CUDA 11.8 / Python 3.10
+* Environment: CUDA 11.8 / Python 3.10
 * Create a virtual environment
 ```shell
 > conda create -n mambamil python=3.10 -y
@@ -44,12 +46,24 @@ pip install tensorboardx
 * `csv`:  Complete Cbioportal files, including the features path and data splits with 5-fold cross-validation. 
 * `datasets`: The code for Dataset, you can just replace the path in Line-25.
 * `mamba_ssm`: including the original Mamba, Bi-Mamba from Vim and our proposed SRMamba.
-* `models`: the model code about SRMamba, samilar as MCAT.
+* `models`: the model code about SRMamba, similar to [MCAT](https://github.com/mahmoodlab/MCAT).
 * `results`: the results on 12 datasets, including BLCA BRCA CESC CRC GBMLGG KIRC LIHC LUAD LUSC PAAD SARC UCEC.
 
 ## How to Train
-### Data
-Coming soon;
+### Prepare your data
+#### WSIs
+1. Download diagnostic WSIs from [TCGA](https://portal.gdc.cancer.gov/)
+2. Use the WSI processing tool provided by [CLAM](https://github.com/mahmoodlab/CLAM) to extract resnet-50 pretrained 1024-dim feature for each 512 $\times$ 512 patch (20x), which we then save as `.pt` files for each WSI. So, we get one `pt_files` folder storing `.pt` files for all WSIs of one study.
+
+The final structure of datasets should be as following:
+```bash
+DATA_ROOT_DIR/
+    └──pt_files/
+        ├── slide_1.pt
+        ├── slide_2.pt
+        └── ...
+```
+
 ### Training
 
 ```shell
@@ -57,7 +71,7 @@ sh mambamil.sh
 ```
 
 ## Results
-Compared to using different hyperparameters for different datasets in the preprint version, in the current version, our MambaMIL can be set with fixed parameters:
+Compared to using different hyperparameter for different datasets in the preprint version, in the current version, our MambaMIL can be set with fixed parameters:
 ```shell
 * LR: 2e-5
 * Layer: 2
