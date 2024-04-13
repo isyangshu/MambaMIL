@@ -1,0 +1,3 @@
+folds,fold 0,fold 1,fold 2,fold 3,fold 4,mean,std
+epoch,25,29,27,25,27
+cindex,0.4029,0.5998,0.6978,0.5481,0.5431,0.5583,0.0956
