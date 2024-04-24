@@ -17,7 +17,7 @@ import wandb
 # torch.use_deterministic_algorithms(True)
 def main(args):
 
-    wandb.init(project=args.task, mode='offline')
+    wandb.init(project=args.task)
     wandb.config.update(args)
     # create results directory if necessary
     if not os.path.isdir(args.results_dir):

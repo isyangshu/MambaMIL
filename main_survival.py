@@ -21,7 +21,7 @@ def main(args):
     if not os.path.isdir(args.results_dir):
         os.mkdir(args.results_dir)
 
-    wandb.init(project=args.task, mode='offline')
+    wandb.init(project=args.task)
     wandb.config.update(args)
     if args.k_start == -1:
         start = 0

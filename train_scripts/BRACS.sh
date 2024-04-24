@@ -16,7 +16,6 @@ gpus['mamba_mil']=0
 
 task="BRACS"
 results_dir="./experiments/train/"$task
-model_size="small" # since the dim of feature of vit-base is 768    
 preloading="no"
 patch_size="512"
 lr='2e-4'
@@ -38,7 +37,7 @@ do
             --drop_out 0 \
             --early_stopping \
             --lr $lr \
-            --k 1 \
+            --k 10 \
             --k_start $k_start \
             --k_end $k_end \
             --label_frac 1.0 \

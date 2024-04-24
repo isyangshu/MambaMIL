@@ -18,8 +18,7 @@ gpus['s4model']=0
 gpus['mamba_mil']=0
 
 task="BRACS"
-results_dir="./experiments/train/"$task
-model_size="small" # since the dim of feature of vit-base is 768    
+results_dir="./experiments/train/"$task  
 preloading="no"
 patch_size="512"
 lr='2e-4'
