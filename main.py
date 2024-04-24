@@ -82,7 +82,7 @@ def main(args):
         'test_acc': [mean_acc_test, std_acc_test],
         'val_acc': [mean_acc_val, std_acc_val],
     })
-    final_df = final_df.append(df_append, ignore_index=True)
+    final_df = pd.concat([final_df, df_append])
     if len(folds) != args.k:
         save_name = 'summary_partial_{}_{}.csv'.format(start, end)
     else:
@@ -98,7 +98,7 @@ def main(args):
 parser = argparse.ArgumentParser(description='Configurations for WSI Training')
 parser.add_argument('--data_root_dir', type=str, default=None, 
                     help='data directory')
-parser.add_argument('--max_epochs', type=int, default=50,
+parser.add_argument('--max_epochs', type=int, default=200,
                     help='maximum number of epochs to train (default: 200)')
 parser.add_argument('--lr', type=float, default=1e-4,
                     help='learning rate (default: 0.0001)')

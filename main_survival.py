@@ -104,7 +104,7 @@ def main(args):
             'test_cindex': [mean_test, std_test],
             'val_cindex': [mean_val, std_val]
         })
-    final_df = final_df.append(df_append, ignore_index=True)
+    final_df = pd.concat([final_df, df_append])
     if len(folds) != args.k:
         save_name = 'summary_partial_{}_{}.csv'.format(start, end)
     else:
