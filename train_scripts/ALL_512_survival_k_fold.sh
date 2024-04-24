@@ -25,7 +25,8 @@ mambamil_type='SRMamba'
 for cancer in $cancers
     do
     task="TCGA_${cancer}_survival"
-    data_root_dir="/data/wangyihui/feature/${cancer}"
+    #Change to your path
+    data_root_dir="Changetoyourpath/${cancer}"
     results_dir="./experiments/train/"$task
     preloading="no"
     patch_size="512"
