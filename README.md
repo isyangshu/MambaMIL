@@ -92,7 +92,7 @@ DATA_ROOT_DIR/
             ├── slide_2.pt
             └── ...
 ```
-#### Survival Prediction
+### Survival Prediction
 We provide train scripts for survival prediction [ALL_512_surivial_k_fold.sh](https://github.com/isyangshu/MambaMIL/tree/main/train_scripts/ALL_512_survival_k_fold.sh).
 
 Below are the supported models and datasets:
@@ -109,7 +109,7 @@ run the following code for training
 sh ./train_scripts/ALL_512_surivial_k_fold.sh
 ```
 
-#### Cancer Subtyping
+### Cancer Subtyping
 We provide train scripts for TCGA NSCLC cancer subtyping [LUAD_LUSC_512_subtyping.sh](https://github.com/isyangshu/MambaMIL/tree/main/train_scripts/LUAD_LUSC_512_subtyping.sh) and BReAst Carcinoma Subtyping [BRACS.sh](https://github.com/isyangshu/MambaMIL/tree/main/train_scripts/train_scripts/BRACS.sh).
 
 Below are the supported models:
