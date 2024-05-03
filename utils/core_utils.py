@@ -192,8 +192,7 @@ def train(datasets, cur, args):
     results_dict, test_error, test_auc, acc_logger = summary(model, test_loader, args.n_classes)
     print('Test error: {:.4f}, ROC AUC: {:.4f}'.format(test_error, test_auc))
 
-    # for i in range(args.n_classes):
-    for i in range(3):
+    for i in range(args.n_classes):
         acc, correct, count = acc_logger.get_summary(i)
         print('class {}: acc {}, correct {}/{}'.format(i, acc, correct, count))
 
@@ -304,8 +303,6 @@ def validate(cur, epoch, model, loader, n_classes, early_stopping = None, writer
 
     print('\nVal Set, val_loss: {:.4f}, val_error: {:.4f}, auc: {:.4f}'.format(val_loss, val_error, auc))
 
-    # wandb.log({'val_loss': val_loss, 'val_acc': 1-val_error, 'val_auc': auc})
-
     for i in range(n_classes):
         acc, correct, count = acc_logger.get_summary(i)
         print('class {}: acc {}, correct {}/{}'.format(i, acc, correct, count))     
@@ -328,44 +325,44 @@ def summary(model, loader, n_classes):
     model.eval()
     test_loss = 0.
     test_error = 0.
-    n_classes = 3
+
     all_probs = np.zeros((len(loader), n_classes))
     all_labels = np.zeros(len(loader))
-    # all_preds = []
-    all_preds = np.zeros(len(loader))
+    all_preds = []
 
     slide_ids = loader.dataset.slide_data['slide_id']
     patient_results = {}
 
+    all_Y_hat = []
+    all_label = []
     for batch_idx, (data, label) in enumerate(loader):
         data, label = data.to(device), label.to(device)
         slide_id = slide_ids.iloc[batch_idx]
         with torch.no_grad():
             logits, Y_prob, Y_hat, _, _ = model(data)
 
-        Y_prob = torch.cat((torch.sum(Y_prob[:, 0:3], dim=1).unsqueeze(1), torch.sum(Y_prob[:, 3:5], dim=1).unsqueeze(1), torch.sum(Y_prob[:, 5:7], dim=1).unsqueeze(1)), dim=1)
-
         acc_logger.log(Y_hat, label)
         probs = Y_prob.cpu().numpy()
-        
         all_probs[batch_idx] = probs
         all_labels[batch_idx] = label.item()
-        all_preds[batch_idx] = Y_hat.item()
-        # all_preds.extend(Y_hat.cpu().numpy())
+        all_preds.extend(Y_hat.cpu().numpy())
         
-        # Y_prob = torch.cat((torch.sum(Y_prob[:, 0:2], dim=1).unsqueeze(1), torch.sum(Y_prob[:, 2:4], dim=1).unsqueeze(1), torch.sum(Y_prob[:, 4:6], dim=1).unsqueeze(1)), dim=1)
         patient_results.update({slide_id: {'slide_id': np.array(slide_id), 'prob': probs, 'label': label.item()}})
         error = calculate_error(Y_hat, label)
         test_error += error
 
+        all_Y_hat.append(Y_hat.cpu().numpy())
+        all_label.append(label.cpu().numpy())
+
     test_error /= len(loader)
+    all_Y_hat = np.concatenate(all_Y_hat)
+    all_label = np.concatenate(all_label)
 
     if n_classes == 2:
         auc = roc_auc_score(all_labels, all_probs[:, 1])
         aucs = []
     else:
         aucs = []
-        n_classes = 3
         binary_labels = label_binarize(all_labels, classes=[i for i in range(n_classes)])
         for class_idx in range(n_classes):
             if class_idx in all_labels:
