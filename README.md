@@ -9,6 +9,8 @@
 
 
 ![](./figs/model_0305.png)
+## NEWS
+**2024-05-14**: Our paper got early acceptance by MICCAI 2024!!!
 
 ## Abstract
 
