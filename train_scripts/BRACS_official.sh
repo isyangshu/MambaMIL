@@ -46,6 +46,7 @@ do
             --label_frac 1.0 \
             --exp_code $exp \
             --patch_size $patch_size \
+            --weighted_sample \
             --task $task \
             --backbone $backbone \
             --results_dir $results_dir \
